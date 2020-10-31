@@ -14,23 +14,7 @@ function Main() {
     const [correctAnswers, setCorrectAnswers] = React.useState(0);
     const [incorrectAnswers, setIncorrectAnswers] = React.useState(0);
 
-    const handleSetQuestionCount = () => {
-        setQuestionCount(questionCount + 1)
-    }
-
-    const handleStartStop = () => {
-        if (questionCount === -1) {
-            return (
-                <Button onClick={() => {handleSetQuestionCount()}} variant="primary">Start</Button>
-            )
-        }
-        else if (questions[questionCount] === undefined) {
-            return (
-                <End correct={correctAnswers} incorrect={incorrectAnswers} onClick={handleSetQuestionCount}/>
-            )
-        }
-    }
-
+    // Assigns points, progresses to next question
     const handleAnswer = (answer) => {
         if (answer === 'correct') {
             setCorrectAnswers(correctAnswers + 1)
@@ -38,13 +22,32 @@ function Main() {
         else {
             setIncorrectAnswers(incorrectAnswers + 1)
         }
+        setQuestionCount(questionCount + 1)
+    }
+
+    const handleStartStop = () => {
+        if (questionCount === -1) {
+            return (
+                <Button 
+                onClick={() => {setQuestionCount(questionCount + 1)}} 
+                variant="primary">Start</Button>
+            )
+        }
+        else if (questions[questionCount] === undefined) {
+            return (
+                <End 
+                correct={correctAnswers} 
+                incorrect={incorrectAnswers} 
+                onClick={setQuestionCount(questionCount + 1)}/>
+            )
+        }
     }
 
   return (
     <div className="main">
         <h1>Tandem for 400!</h1>
         {questions[questionCount] ?
-            <Question currentQuestion={questions[questionCount]} onClick={handleSetQuestionCount} handleAnswer={handleAnswer}/>
+            <Question currentQuestion={questions[questionCount]}handleAnswer={handleAnswer}/>
         :
             handleStartStop()
         }
