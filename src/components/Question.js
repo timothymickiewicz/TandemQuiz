@@ -12,8 +12,8 @@ function Question(props) {
 
     React.useEffect(() => {
         // Resets correct/incorrect buttons to original format
-        $(".correct").fadeIn(500).attr("disabled", false)
-        $(".incorrect").fadeIn(500).attr("disabled", false)
+        $(".correct").fadeIn(500).attr("disabled", false).attr("active", false);
+        $(".incorrect").fadeIn(500).attr("disabled", false).attr("active", false);
         // Shuffling to prevent memorizing correct answer order
         const shuffleQuestions = () => {
             let shuffledQuestions = props.currentQuestion.incorrect;
@@ -36,7 +36,7 @@ function Question(props) {
     }
 
     const checkAnswer = (e) => {
-        // Highlights correct/incorrect answers
+        // Highlights correct/incorrect answers, disables all choices
         $('.correct').css("background-color", "green").attr("disabled", true)
         $('.incorrect').css("background-color", "red").attr("disabled", true)
         setTimeout(() => {
@@ -59,15 +59,16 @@ function Question(props) {
 
   return (
     <div className="question">
-        <h1>{props.currentQuestion.question}</h1>
+        <h1 className="questionTitle">{props.currentQuestion.question}</h1>
         <div className="answerContainer">
             {questions.map((key, index) => {
                 return (
                     <Button 
                     onClick={(e) => {checkAnswer(e)}} 
+                    active={false}
                     value={key} 
                     variant="primary" 
-                    className={key === props.currentQuestion.correct ? "correct" : "incorrect"} 
+                    className={key === props.currentQuestion.correct ? "correct answerBtn" : "incorrect answerBtn"} 
                     key={index}>
                         {key}
                     </Button>
