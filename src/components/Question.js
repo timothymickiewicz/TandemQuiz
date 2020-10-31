@@ -12,8 +12,8 @@ function Question(props) {
 
     React.useEffect(() => {
         // Resets correct/incorrect buttons to original format
-        $(".correct").fadeIn(500)
-        $(".incorrect").fadeIn(500)
+        $(".correct").fadeIn(500).attr("disabled", false)
+        $(".incorrect").fadeIn(500).attr("disabled", false)
         // Shuffling to prevent memorizing correct answer order
         const shuffleQuestions = () => {
             let shuffledQuestions = props.currentQuestion.incorrect;
@@ -37,8 +37,8 @@ function Question(props) {
 
     const checkAnswer = (e) => {
         // Highlights correct/incorrect answers
-        $('.correct').css("background-color", "green")
-        $('.incorrect').css("background-color", "red")
+        $('.correct').css("background-color", "green").attr("disabled", true)
+        $('.incorrect').css("background-color", "red").attr("disabled", true)
         setTimeout(() => {
             // Reset correct/incorrect coloring
             $(".correct").fadeOut(500, () => {
@@ -49,13 +49,11 @@ function Question(props) {
             })
         }, 2500)
         setTimeout(() => {
-            // Handles correct/incorrect answers, assigns points and progreses to next question
-            if (e.target.value === props.currentQuestion.correct) {
-                return props.handleAnswer('correct')
-            }
-            else {
-                return props.handleAnswer('incorrect')
-            }
+            // Handles correct/incorrect answers, assigns points and progresses to next question
+            e.target.value === props.currentQuestion.correct ?
+                props.handleAnswer('correct')
+            :
+                props.handleAnswer('incorrect')
         }, 3000)
     }
 
@@ -67,7 +65,8 @@ function Question(props) {
                 return (
                     <Button 
                     onClick={(e) => {checkAnswer(e)}} 
-                    value={key} variant="primary" 
+                    value={key} 
+                    variant="primary" 
                     className={key === props.currentQuestion.correct ? "correct" : "incorrect"} 
                     key={index}>
                         {key}
