@@ -5,6 +5,7 @@ import './Main.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 import questions from '../utils/Apprentice_TandemFor400_Data.json';
+import shuffle from '../utils/shuffle';
 
 import Question from './Question';
 import End from './End';
@@ -13,6 +14,11 @@ function Main() {
     const [questionCount, setQuestionCount] = React.useState(-1);
     const [correctAnswers, setCorrectAnswers] = React.useState(0);
     const [incorrectAnswers, setIncorrectAnswers] = React.useState(0);
+    const [questionPool, setQuestionPool] = React.useState([]);
+
+    React.useEffect(() => {
+        setQuestionPool(shuffle(questions))
+    }, [])
 
     // Assigns points, progresses to next question
     const handleAnswer = (answer) => {
@@ -25,33 +31,45 @@ function Main() {
         setQuestionCount(questionCount + 1)
     }
 
+    const handleEndSetQuestionCount = () => {
+        setQuestionCount(0);
+        setCorrectAnswers(0);
+        setIncorrectAnswers(0);
+    }
+
     const handleStartStop = () => {
         if (questionCount === -1) {
             return (
                 <Button 
                 onClick={() => {setQuestionCount(questionCount + 1)}} 
-                variant="primary">Start</Button>
+                variant="light"
+                className="start">
+                    Start
+                </Button>
             )
         }
-        else if (questions[questionCount] === undefined) {
+        else {
             return (
                 <End 
                 correct={correctAnswers} 
                 incorrect={incorrectAnswers} 
-                onClick={setQuestionCount(questionCount + 1)}/>
+                onClick={() => handleEndSetQuestionCount()}/>
             )
         }
     }
 
   return (
-    <div className="main">
-        <h1>Tandem for 400!</h1>
-        {questions[questionCount] ?
-            <Question currentQuestion={questions[questionCount]}handleAnswer={handleAnswer}/>
-        :
-            handleStartStop()
-        }
-    </div>
+      <>
+        <h1 id="title">Tandem for 400!</h1>
+        <div className="main">
+            
+            {questionCount < 10 && questionCount !== -1 ?
+                <Question currentQuestion={questionPool[questionCount]}handleAnswer={handleAnswer}/>
+            :
+                handleStartStop()
+            }
+        </div>
+    </>
   );
 }
 

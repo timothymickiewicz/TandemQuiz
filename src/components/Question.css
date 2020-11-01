@@ -4,12 +4,13 @@
     justify-content: space-between;
     flex-direction: row;
     flex-wrap: wrap;
-    flex: 0 1 80%;
+    flex: 0 1 95%;
 }
 
 .answerBtn {
     flex: 0 1 calc(50% - 20px);
     margin: 10px;
+    font-size: calc(10px + 1.5vh);
 }
 
 .question {
@@ -22,4 +23,12 @@
 
 .questionTitle {
     flex: 0 1 95%;
+    font-size: calc(15px + 2vh);
+    padding-bottom: 3vh;
+}
+
+.response {
+    position: fixed;
+    bottom: 10%;
+    font-size: calc(10px + 4vh);
 }

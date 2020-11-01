@@ -3,6 +3,8 @@ import { Button } from 'react-bootstrap';
 
 import $ from 'jquery';
 
+import shuffle from '../utils/shuffle';
+
 import './Question.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -11,34 +13,38 @@ function Question(props) {
     const [questions, setQuestions] = React.useState([]);
 
     React.useEffect(() => {
-        // Resets correct/incorrect buttons to original format
+        // Resets question formatting
         $(".correct").fadeIn(500).attr("disabled", false).attr("active", false);
         $(".incorrect").fadeIn(500).attr("disabled", false).attr("active", false);
+        $(".questionTitle").fadeIn(500)
+
         // Shuffling to prevent memorizing correct answer order
         const shuffleQuestions = () => {
             let shuffledQuestions = props.currentQuestion.incorrect;
-            shuffledQuestions.push(props.currentQuestion.correct);
-            shuffleArray(shuffledQuestions);
+
+            // Adds the correct answer to answer pool if it doesn't already exist in it
+            !shuffledQuestions.includes(props.currentQuestion.correct) ?
+                shuffledQuestions.push(props.currentQuestion.correct)
+            :
+                <null></null>
+            
+            shuffle(shuffledQuestions);
             setQuestions(shuffledQuestions)
         }
         shuffleQuestions();
     }, [props.currentQuestion.incorrect, props.currentQuestion.correct])
 
-    function shuffleArray(a) {
-        let j, x, i;
-        for (i = a.length - 1; i > 0; i--) {
-            j = Math.floor(Math.random() * (i + 1));
-            x = a[i];
-            a[i] = a[j];
-            a[j] = x;
-        }
-        return a;
-    }
-
-    const checkAnswer = (e) => {
-        // Highlights correct/incorrect answers, disables all choices
+    // Handles visual and state changes for answers
+    const handleAnswer = (e) => {
         $('.correct').css("background-color", "green").attr("disabled", true)
         $('.incorrect').css("background-color", "red").attr("disabled", true)
+
+        e.target.value === props.currentQuestion.correct ?
+        $('.response').text("Correct").css("color", "green").css("display", "initial")
+        :
+        $('.response').text("Incorrect").css("color", "red").css("display", "initial")
+
+        // Fading effects make for a much cleaner transition and masks background color changes
         setTimeout(() => {
             // Reset correct/incorrect coloring
             $(".correct").fadeOut(500, () => {
@@ -47,27 +53,32 @@ function Question(props) {
             $(".incorrect").fadeOut(500, () => {
                 $('.incorrect').css("background-color", "")
             })
-        }, 2500)
+            $(".response").fadeOut(500, () => {
+                $('.response').text("").css("display", "none")
+            })
+            $(".questionTitle").fadeOut(500)
+        }, 1500)
+
         setTimeout(() => {
-            // Handles correct/incorrect answers, assigns points and progresses to next question
             e.target.value === props.currentQuestion.correct ?
                 props.handleAnswer('correct')
             :
                 props.handleAnswer('incorrect')
-        }, 3000)
+        }, 2000)
     }
 
   return (
     <div className="question">
+        <div className="response"></div>
         <h1 className="questionTitle">{props.currentQuestion.question}</h1>
         <div className="answerContainer">
             {questions.map((key, index) => {
                 return (
                     <Button 
-                    onClick={(e) => {checkAnswer(e)}} 
+                    onClick={(e) => {handleAnswer(e)}} 
                     active={false}
                     value={key} 
-                    variant="primary" 
+                    variant="light" 
                     className={key === props.currentQuestion.correct ? "correct answerBtn" : "incorrect answerBtn"} 
                     key={index}>
                         {key}
