@@ -27,6 +27,9 @@
 <h2>Skills</h2>
 <p>Testing, Dynamic Rendering, Responsive Design</p>
 <hr>
+<h2>Future Ideas</h2>
+<p>I would like to revisit a lot of the visual design. I would like to one day be able to design as well as I can create flexible front-end code. Being able to save scores in local storage or even a database would be cool if I had more time to set that up.</p>
+<hr>
 <h2>Contributors</h2>
 <p>Everyone who contributed to create the necessary NPM packages, and myself.
 <hr>
