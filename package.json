@@ -51,10 +51,10 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+        "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+      "src/**/*.{js,jsx}": ["eslint", "pretty-quick — staged", "git add"]
   }
 }
