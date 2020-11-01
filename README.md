@@ -1,12 +1,22 @@
 # TandemQuiz
 
 <p>Quiz App</p>
-<a align="right" href="" class="live">(Live-link)</a>
-<a align="left" href="" class="code">(Code)</a>
+<a align="right" href="" class="live">[Live-link](http://github.com)
+</a>
+<a align="left" href="" class="code">[Code](https://github.com/timothymickiewicz/TandemQuiz)</a>
 <hr>
 <h2>Purpose</h2>
 <p>This application presents a series of questions to the user and displays their correct and incorrect values at the end.
 </p>
+<hr>
+<h2>Running Code</h2>
+<ol>
+    <li>Clone this repository.</li>
+    <li>`npm i` to install dependancies</li>
+    <li>`npm start` to run the code in browser</li>
+    <li>`npm test` to run tests</li>
+</ol>
+
 <hr>
 <h2>System Requirements</h2>
 <p>Node >= 8.10 and npm >= 5.6 </p>
