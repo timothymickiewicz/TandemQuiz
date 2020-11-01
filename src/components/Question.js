@@ -18,20 +18,20 @@ function Question(props) {
     $('.questionTitle').fadeIn(500);
 
     // Shuffling to prevent memorizing correct answer order
-    const shuffleQuestions = () => {
-      let shuffledQuestions = props.currentQuestion.incorrect;
+    const shuffleAnswers = () => {
+      let shuffledAnswers = props.currentQuestion.incorrect;
 
       // Adds the correct answer to answer pool if it doesn't already exist in it
-      !shuffledQuestions.includes(props.currentQuestion.correct) ? (
-        shuffledQuestions.push(props.currentQuestion.correct)
+      !shuffledAnswers.includes(props.currentQuestion.correct) ? (
+        shuffledAnswers.push(props.currentQuestion.correct)
       ) : (
         <null></null>
       );
 
-      shuffle(shuffledQuestions);
-      setQuestions(shuffledQuestions);
+      shuffle(shuffledAnswers);
+      setQuestions(shuffledAnswers);
     };
-    shuffleQuestions();
+    shuffleAnswers();
   }, [props.currentQuestion.incorrect, props.currentQuestion.correct]);
 
   // Handles visual and state changes for answers
