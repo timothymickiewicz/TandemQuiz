@@ -1,7 +1,7 @@
 # TandemQuiz
 
 <p>Quiz App</p>
-<a align="right" href="" class="live">[Live-link](http://github.com)
+<a align="right" href="" class="live">[Live-link](https://timothymickiewicz.github.io/TandemQuiz/)
 </a>
 <a align="left" href="" class="code">[Code](https://github.com/timothymickiewicz/TandemQuiz)</a>
 <hr>
