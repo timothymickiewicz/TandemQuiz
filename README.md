@@ -1,9 +1,9 @@
 # TandemQuiz
 
 <p>Quiz App</p>
-<a align="right" href="" class="live">[Live-link](https://timothymickiewicz.github.io/TandemQuiz/)
-</a>
-<a align="left" href="" class="code">[Code](https://github.com/timothymickiewicz/TandemQuiz)</a>
+
+[Live-link](https://timothymickiewicz.github.io/TandemQuiz/)
+[Code](https://github.com/timothymickiewicz/TandemQuiz)
 <hr>
 <h2>Purpose</h2>
 <p>This application presents a series of questions to the user and displays their correct and incorrect values at the end.
