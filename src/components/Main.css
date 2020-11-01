@@ -12,6 +12,14 @@
     background: white;
     border: black solid 1.5px;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#subTitle {
+    flex: 1 0 100%;
+    font-size: calc(10px + 2vh);
 }
 
 .main {
@@ -29,6 +37,6 @@
 
 @media only screen and (max-width: 800px) {
     #title {
-      width: 100%;
+      width: 95%;
     }
   }

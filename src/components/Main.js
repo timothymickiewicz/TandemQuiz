@@ -31,7 +31,7 @@ function Main() {
         setQuestionCount(questionCount + 1)
     }
 
-    const handleEndSetQuestionCount = () => {
+    const handleReset = () => {
         setQuestionCount(0);
         setCorrectAnswers(0);
         setIncorrectAnswers(0);
@@ -53,14 +53,14 @@ function Main() {
                 <End 
                 correct={correctAnswers} 
                 incorrect={incorrectAnswers} 
-                onClick={() => handleEndSetQuestionCount()}/>
+                onClick={() => handleReset()}/>
             )
         }
     }
 
   return (
       <>
-        <h1 id="title">Tandem for 400!</h1>
+        <h1 id="title">Tandem for 400! <span id="subTitle">Trivia</span></h1>
         <div className="main">
             
             {questionCount < 10 && questionCount !== -1 ?
