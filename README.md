@@ -1,4 +1,5 @@
 # TandemQuiz
+
 <p>Quiz App</p>
 <a align="right" href="" class="live">(Live-link)</a>
 <a align="left" href="" class="code">(Code)</a>
@@ -11,7 +12,10 @@
 <p>Node >= 8.10 and npm >= 5.6 </p>
 <hr>
 <h2>Technologies/Libraries</h2>
-<p>React, JavaScript, Node, jQuery, HTML5, CSS3, React Bootstrap, jQuery</p>
+<p>React, JavaScript, Node, jQuery, HTML5, CSS3, React Bootstrap, jQuery, Prettier, Jest</p>
+<hr>
+<h2>Skills</h2>
+<p>Testing, Dynamic Rendering, Responsive Design</p>
 <hr>
 <h2>Contributors</h2>
 <p>Everyone who contributed to create the necessary NPM packages, and myself.
