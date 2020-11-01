@@ -33,7 +33,7 @@
 
 .start {
   font-size: calc(5px + 3vh) !important;
-  flex: 0 1 auto;
+  flex: 0 1 1px;
 }
 
 @media only screen and (max-width: 800px) {
